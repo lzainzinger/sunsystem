@@ -1,4 +1,4 @@
-__author__ = 'clehner, lukaszainzinger'
+__author__ = 'cindylehner, lukaszainzinger'
 
 """ Sonnensystem Simulation mit Hilfe von PyGame und PyOpenGL """
 
