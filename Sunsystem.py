@@ -1,8 +1,10 @@
+
 __author__ = 'cindylehner, lukaszainzinger'
 
 """ Sonnensystem Simulation mit Hilfe von PyGame und PyOpenGL """
 
 import pygame
+from OpenGL.raw.GLUT import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
 
@@ -23,7 +25,13 @@ pygame.display.update()
 clock = pygame.time.Clock()
 exit = False
 
-def Loop():
+def sphere():
+    n1 = [300, 200]
+    n2 = [500, 200]
+
+    pygame.draw.line(display, (1, 1, 1), (n1), (n2))
+
+def loop():
     #  """ Game - Loop """
 
     while True:
@@ -33,10 +41,12 @@ def Loop():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
+
         display.fill((0, 0, 0))
+        sphere()
         pygame.display.update()
         clock.tick(25)
     pygame.quit()
     quit()
 
-Loop()
+loop()
