@@ -20,13 +20,13 @@ class Sunsystem(object):
 
         pygame.display.update()
 
-        gameExit = False
+        while True:
 
-        while not gameExit:
             for event in pygame.event.get():
+                # Quit-Handling
                 if event.type == pygame.QUIT:
-                    gameExit = True
+                    pygame.quit()
+                    quit()
 
-
-        pygame.quit()
-        quit()
+            display.fill(0,0,0)
+            pygame.time.Clock().tick(25)
