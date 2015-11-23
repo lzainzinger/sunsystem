@@ -18,7 +18,7 @@ from OpenGL.GLU import *
 #   self.dayOfYear = 0.0
 #  self.marsDayOfYear = 0.0
 
-
+# Methode zum Erstellen von Planeten
 def sphere():
     glColor3f(1.0, 1.0, 1.0)
     glutWireSphere(0.25, 30, 30)
@@ -27,6 +27,7 @@ def sphere():
 def main():
     #  """ Game - Main """
 
+    # Frame
     pygame.init()
     display = (800, 600)
     pygame.display.set_mode(display, DOUBLEBUF | OPENGL)
@@ -36,22 +37,32 @@ def main():
 
     glTranslatef(0.0, 0.0, -5.0)
 
-    glRotatef(20, 0, 0, 0)
+    glRotatef(0, 0, 0, 0)
 
+    # Game-Loop
     while True:
 
         for event in pygame.event.get():
+
             # Quit-Handling
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
 
-        glRotatef(1, 1, 1, 1)
+        # Rotieren des Planeten
+        glRotatef(1, 0, 1, 0)
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-        # display.fill((0,0,0))
+
+        # Um den Planeten zu drehen
+        glPushMatrix()
+        glRotatef(-90, 1.0, .0, .0)
         sphere()
+        glPopMatrix()
+
+        # Frame update
         pygame.display.flip()
         pygame.time.wait(10)
+
     pygame.quit()
     quit()
 
