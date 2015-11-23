@@ -1,3 +1,4 @@
+from pygame.constants import DOUBLEBUF, OPENGL
 
 __author__ = 'cindylehner, lukaszainzinger'
 
@@ -17,19 +18,18 @@ from OpenGL.GLU import *
       #  self.marsDayOfYear = 0.0
 
 pygame.init()
-display = pygame.display.set_mode((800,600))
+display = (800,600)
+pygame.display.set_mode(display, DOUBLEBUF|OPENGL)
 pygame.display.set_caption('Sunsystem - Lehner, Zainzinger')
 
-pygame.display.update()
+gluPerspective(45, (display[0]/display[1]), 0.1, 50.0)
 
-clock = pygame.time.Clock()
-exit = False
+glTranslatef(0.0,0.0,-5.0)
 
 def sphere():
-    n1 = [300, 200]
-    n2 = [500, 200]
+    glColor3f(1.0,1.0,1.0)
+    glutSolidSphere(0.25,250,250)
 
-    pygame.draw.line(display, (1, 1, 1), (n1), (n2))
 
 def loop():
     #  """ Game - Loop """
@@ -42,10 +42,11 @@ def loop():
                 pygame.quit()
                 quit()
 
-        display.fill((0, 0, 0))
+        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+        # display.fill((0,0,0))
         sphere()
-        pygame.display.update()
-        clock.tick(25)
+        pygame.display.flip()
+        pygame.time.wait(10)
     pygame.quit()
     quit()
 
