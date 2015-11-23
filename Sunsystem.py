@@ -20,7 +20,7 @@ from OpenGL.GLU import *
 
 # Methode zum Erstellen von Planeten
 def sphere():
-    glColor3f(1.0, 1.0, 1.0)
+    glColor3f(0.0, 0.0, 1.0)
     glutWireSphere(0.25, 30, 30)
 
 
