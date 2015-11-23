@@ -21,7 +21,7 @@ from OpenGL.GLU import *
 
 def sphere():
     glColor3f(1.0, 1.0, 1.0)
-    glutWireSphere(0.25, 250, 250)
+    glutWireSphere(0.25, 30, 30)
 
 
 def main():
