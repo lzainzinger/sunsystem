@@ -17,22 +17,26 @@ from OpenGL.GLU import *
      #   self.dayOfYear = 0.0
       #  self.marsDayOfYear = 0.0
 
-pygame.init()
-display = (800,600)
-pygame.display.set_mode(display, DOUBLEBUF|OPENGL)
-pygame.display.set_caption('Sunsystem - Lehner, Zainzinger')
 
-gluPerspective(45, (display[0]/display[1]), 0.1, 50.0)
-
-glTranslatef(0.0,0.0,-5.0)
 
 def sphere():
     glColor3f(1.0,1.0,1.0)
     glutSolidSphere(0.25,250,250)
 
 
-def loop():
-    #  """ Game - Loop """
+def main():
+    #  """ Game - Main """
+
+    pygame.init()
+    display = (800,600)
+    pygame.display.set_mode(display, DOUBLEBUF|OPENGL)
+    pygame.display.set_caption('Sunsystem - Lehner, Zainzinger')
+
+    gluPerspective(45, (display[0]/display[1]), 0.1, 50.0)
+
+    glTranslatef(0.0, 0.0, -5.0)
+
+    glRotatef(20, 0, 0, 0)
 
     while True:
 
@@ -50,4 +54,4 @@ def loop():
     pygame.quit()
     quit()
 
-loop()
+main()
