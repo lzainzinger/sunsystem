@@ -1,4 +1,4 @@
-from pygame.constants import DOUBLEBUF, OPENGL
+from pygame.constants import DOUBLEBUF, OPENGL, K_p
 
 __author__ = 'cindylehner, lukaszainzinger'
 
@@ -66,11 +66,18 @@ def main():
     while True:
 
         for event in pygame.event.get():
-
+            k = pygame.key.get_pressed()
             # Quit-Handling
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
+            if k[K_p]:
+                if paused:
+                    paused = False
+                else:
+                    paused = True
+
+
 
         if not paused:
             # Update the animation state
