@@ -1,4 +1,4 @@
-from pygame.constants import DOUBLEBUF, OPENGL, K_p
+from pygame.constants import *
 
 __author__ = 'cindylehner, lukaszainzinger'
 
@@ -76,6 +76,14 @@ def main():
                     paused = False
                 else:
                     paused = True
+            elif k[K_PLUS]:
+                if animateIncrement < 150:
+                    animateIncrement = animateIncrement + 10
+            elif k[K_MINUS]:
+                if animateIncrement > 40:
+                    animateIncrement = animateIncrement - 10
+
+
 
 
 
