@@ -24,7 +24,11 @@ def sphereSonne():
 
 def sphereErde():
     glColor3f(0.2, 0.2, 1.0)
-    glutWireSphere(0.35, 40, 40)
+    glutWireSphere(0.35, 30, 30)
+
+def sphereMond():
+    glColor3f(6,6,6)
+    glutWireSphere(0.1,30,30)
 
 
 
@@ -94,6 +98,11 @@ def main():
         glRotatef(360.0 * hourOfDay / 24.0, 0.0, 1.0, 0.0)
         sphereErde()
         glPopMatrix()
+
+        # Mond
+        glRotatef(360.0 * 12.0 * dayOfYear / 365.0, 0.0, 1.0, 0.0)
+        glTranslatef(0.5, 0.0, 0.0)
+        sphereMond()
 
         glFlush()
         # Frame update
