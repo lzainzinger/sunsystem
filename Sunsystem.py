@@ -33,11 +33,16 @@ def sphereVenus():
     glColor3f(0.5, 0.5, 0.2)
     glutWireSphere(0.33, 30, 30)
 
+def sphereMars():
+    glColor3f(1.0, 0.0, 0.0)
+    glutWireSphere(0.5, 30, 30)
+
 
 def main():
     dayOfYear = 0.0
     hourOfDay = 0.0
     venusDayOfYear = 0.0
+    marsDayOfYear = 0.0
     animateIncrement = 4.0
     #  """ Game - Main """
 
@@ -56,7 +61,7 @@ def main():
 
     gluPerspective(60, (display[0] / display[1]), 0.5, 100.0)
 
-    glTranslatef(0.0, -0.5, -2.0)
+    glTranslatef(0.0, -0.5, -8.0)
 
     glRotatef(1, 1, 1, 1)
 
@@ -97,7 +102,9 @@ def main():
             hourOfDay -= (hourOfDay // 24 * 24)
             dayOfYear -= (dayOfYear // 365 * 365)
             venusDayOfYear += inc
-            venusDayOfYear -= (venusDayOfYear // 584 * 584)
+            venusDayOfYear -= (venusDayOfYear // 225 * 225)
+            marsDayOfYear += inc
+            marsDayOfYear -= (marsDayOfYear // 687 * 687)
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
         glLoadIdentity()
@@ -111,7 +118,7 @@ def main():
         glPopMatrix()
 
         # Venus
-        glRotatef(360.0 * venusDayOfYear / 584, 0.0, 1.0, 0.0)
+        glRotatef(360.0 * venusDayOfYear / 225, 0.0, 1.0, 0.0)
         glPushMatrix()
         glTranslatef(2.0, 0.0, 0.0)
         glTranslatef(1.0, 0.0, 0.0)
@@ -132,6 +139,13 @@ def main():
         glTranslatef(0.5, 0.0, 0.0)
         sphereMond()
         glPopMatrix()
+        glPopMatrix()
+
+        glRotatef(360.0 * marsDayOfYear / 687, 0.0, 1.0, 0.0)
+        glPushMatrix()
+        glTranslatef(7.0, 0.0, 0.0)
+        glRotatef(360 * dayOfYear / 24.0, 0.0, 1.0, 0.0)
+        sphereMars()
         glPopMatrix()
 
         glFlush()
