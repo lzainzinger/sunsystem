@@ -13,28 +13,31 @@ from OpenGL.GLU import *
 # class Sunsystem(object):
 # """  Klasse Sunsystem zur Darstellung eines Sonnensystemes """
 
-# def __init__(self):
-#    self.hourOfDay = 0.0
-#   self.dayOfYear = 0.0
-#  self.marsDayOfYear = 0.0
 # Methode zum Erstellen von Planeten
 def sphereSonne():
     glColor3f(1.0, 1.0, 0.0)
     glutWireSphere(1.0, 50, 50)
 
+
 def sphereErde():
-    glColor3f(0.2, 0.2, 1.0)
+    glColor3f(0.0, 0.0, 1.0)
     glutWireSphere(0.35, 30, 30)
 
-def sphereMond():
-    glColor3f(6,6,6)
-    glutWireSphere(0.1,30,30)
 
+def sphereMond():
+    glColor3f(6, 6, 6)
+    glutWireSphere(0.1, 30, 30)
+
+
+def sphereVenus():
+    glColor3f(0.5, 0.5, 0.2)
+    glutWireSphere(0.33, 30, 30)
 
 
 def main():
     dayOfYear = 0.0
     hourOfDay = 0.0
+    venusDayOfYear = 0.0
     animateIncrement = 4.0
     #  """ Game - Main """
 
@@ -88,12 +91,13 @@ def main():
 
 
         if not paused:
-            # Update the animation state
             hourOfDay += animateIncrement
             inc = animateIncrement / 24.0
             dayOfYear += inc
             hourOfDay -= (hourOfDay // 24 * 24)
             dayOfYear -= (dayOfYear // 365 * 365)
+            venusDayOfYear += inc
+            venusDayOfYear -= (venusDayOfYear // 584 * 584)
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
         glLoadIdentity()
@@ -106,18 +110,29 @@ def main():
         sphereSonne()
         glPopMatrix()
 
+        # Venus
+        glRotatef(360.0 * venusDayOfYear / 584, 0.0, 1.0, 0.0)
+        glPushMatrix()
+        glTranslatef(2.0, 0.0, 0.0)
+        glTranslatef(1.0, 0.0, 0.0)
+        glRotatef(360.0 * dayOfYear / 243.0, 0.0, 1.0, 0.0)
+        sphereVenus()
+        glPopMatrix()
+
         # Erde
         glRotatef(360.0 * dayOfYear / 365.0, 0.0, 1.0, 0.0)
-        glTranslatef(4.0, 0.0, 0.0)
         glPushMatrix()
+        glTranslatef(5.0, 0.0, 0.0)
         glRotatef(360.0 * hourOfDay / 24.0, 0.0, 1.0, 0.0)
         sphereErde()
-        glPopMatrix()
 
         # Mond
         glRotatef(360.0 * 12.0 * dayOfYear / 365.0, 0.0, 1.0, 0.0)
+        glPushMatrix()
         glTranslatef(0.5, 0.0, 0.0)
         sphereMond()
+        glPopMatrix()
+        glPopMatrix()
 
         glFlush()
         # Frame update
