@@ -172,6 +172,11 @@ def main():
                     glDisable(GL_TEXTURE_2D)
                 else:
                     texture = True
+                    glEnable(GL_TEXTURE_2D)
+                    glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP)
+                    glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP)
+                    glEnable(GL_TEXTURE_GEN_S)
+                    glEnable(GL_TEXTURE_GEN_T)
             elif k[K_l]:
                 if light:
                     light = False
