@@ -149,6 +149,7 @@ def main():
     # Game-Loop
     while True:
 
+        # Event-Handling
         for event in pygame.event.get():
             k = pygame.key.get_pressed()
             # Quit-Handling
@@ -185,6 +186,9 @@ def main():
                 else:
                     light = True
                     setupLighting()
+            elif k[K_ESCAPE]:
+                pygame.quit()
+                quit()
 
 
         if not paused:
