@@ -2,8 +2,6 @@ from pygame.constants import *
 
 __author__ = 'cindylehner, lukaszainzinger'
 
-""" Sonnensystem Simulation mit Hilfe von PyGame und PyOpenGL """
-
 import pygame
 from OpenGL.raw.GLUT import *
 from OpenGL.GL import *
@@ -17,21 +15,30 @@ from Button import *
 
 # Methoden zum Erstellen von Planeten
 def sphereSonne():
-    """ Methode zum Erstellen der Sonne  """
+    """
+    Methode zum Erstellen der Sonne
+    :return:
+    """
 
     glColor3f(1.0, 1.0, 0.0)
     glutSolidSphere(1.0, 50, 50)
 
 
 def sphereErde():
-    """ Methode zum Erstellen der Erde  """
+    """
+    Methode zum Erstellen der Erde
+    :return:
+    """
 
     glColor3f(0.0, 0.0, 1.0)
     glutSolidSphere(0.35, 30, 30)
 
 
 def sphereMond():
-    """ Methode zum Erstellen des Monds  """
+    """
+    Methode zum Erstellen des Monds
+    :return:
+    """
 
     glColor3f(6, 6, 6)
     glutSolidSphere(0.1, 30, 30)
@@ -40,6 +47,7 @@ def sphereMond():
 def sphereVenus():
     """
     Methode zum Erstellen der Venus
+    :return:
     """
 
     glColor3f(0.5, 0.5, 0.2)
@@ -49,6 +57,7 @@ def sphereVenus():
 def sphereMars():
     """
     Methode zum Erstellen des Mars
+    :return:
     """
 
     glColor3f(1.0, 0.0, 0.0)
@@ -58,6 +67,7 @@ def sphereMars():
 def setupLighting():
     """
     Methode zum erstellen der Beleuchtung
+    :return:
     """
     zeros = (0.15, 0.15, 0.15, 0.3)
     ones = (1.0, 1.0, 1.0, 0.3)
@@ -113,6 +123,7 @@ def setupTexture(imgID):
     """
     Methode zum Texturieren
     :param imgID: Referenz der Textur (von der Methode getImage)
+    :return:
     """
     glEnable(GL_TEXTURE_2D)
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST)
@@ -125,6 +136,7 @@ def setupTexture(imgID):
 def main():
     """
     Main-Methode des Solarsystems, zum erstellen des Solarsystems
+    :return:
     """
     dayOfYear = 0.0
     hourOfDay = 0.0
@@ -174,7 +186,7 @@ def main():
     lookz = 7
 
     # Beschreibung
-    print("Key-Commands: \n  \n + ... Schneller \n - ... Langsamer \n l ... Licht \n t ... Texture \n c ... Ansicht ändern \n ESC ... Schließen")
+    print("Key-Commands: \n  \n + ... Schneller \n - ... Langsamer \n l ... Licht \n t ... Texture \n c ... Ansicht aendern \n ESC ... Schließen")
 
     # Game-Loop
     while True:

@@ -14,6 +14,7 @@ class Button():
         :param p2: Punkt2
         :param p3: Punkt3
         :param p4: Punkt4
+        :return:
         """
         self.p1 = p1
         self.p2 = p2
@@ -24,6 +25,7 @@ class Button():
     def draw(self):
         """
         Zeichnet den Button
+        :return:
         """
 
         glBegin(GL_POLYGON)
