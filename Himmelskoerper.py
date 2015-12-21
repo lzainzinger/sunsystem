@@ -7,13 +7,15 @@ from OpenGL.GLU import *
 
 class Himmelskoerper():
 
-    def __init__(self):
-        self.size = None
+    def __init__(self, size, color):
+        self.size = size
+        self.color = color
         self.rotate = None
         self.orbitB = None
 
     def create(self):
-        pass
+        glColor3f(self.color)
+        glSolidSphere(self.size, 30, 30)
 
     def performRotate(self):
         pass
