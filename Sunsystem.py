@@ -135,7 +135,11 @@ def main():
     glMatrixMode(GL_MODELVIEW)
 
     # Texturen laden
-    # textureSun = getImage('sun')
+    textureSun = getImage('sun')
+    textureMars = getImage('mars')
+    textureVenus = getImage('venus')
+    textureErde = getImage('erde')
+    textureMond = getImage('mond')
 
     paused = False
     texture = False
@@ -194,14 +198,17 @@ def main():
         glTranslatef(0.0, 0.0, -8.0)
         glRotatef(15.0, 1.0, 0.0, 0.0)
 
-        # if texture:
-            # setupTexture(textureSun)
+        if texture:
+            setupTexture(textureSun)
 
         # Sonne
         glPushMatrix()
         glRotatef(-90, 1.0, .0, .0)
         sphereSonne()
         glPopMatrix()
+
+        if texture:
+            setupTexture(textureVenus)
 
         # Venus
         glRotatef(360.0 * venusDayOfYear / 225, 0.0, 1.0, 0.0)
@@ -212,12 +219,18 @@ def main():
         sphereVenus()
         glPopMatrix()
 
+        if texture:
+            setupTexture(textureErde)
+
         # Erde
         glRotatef(360.0 * dayOfYear / 365.0, 0.0, 1.0, 0.0)
         glPushMatrix()
         glTranslatef(5.0, 0.0, 0.0)
         glRotatef(360.0 * hourOfDay / 24.0, 0.0, 1.0, 0.0)
         sphereErde()
+
+        if texture:
+            setupTexture(textureMond)
 
         # Mond
         glRotatef(360.0 * 12.0 * dayOfYear / 365.0, 0.0, 1.0, 0.0)
@@ -226,6 +239,9 @@ def main():
         sphereMond()
         glPopMatrix()
         glPopMatrix()
+
+        if texture:
+            setupTexture(textureMars)
 
         # Mars
         glRotatef(360.0 * marsDayOfYear / 545, 0.0, 1.0, 0.0)
