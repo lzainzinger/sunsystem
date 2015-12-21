@@ -17,27 +17,27 @@ from PIL import Image
 # Methode zum Erstellen von Planeten
 def sphereSonne():
     glColor3f(1.0, 1.0, 0.0)
-    glutWireSphere(1.0, 50, 50)
+    glutSolidSphere(1.0, 50, 50)
 
 
 def sphereErde():
     glColor3f(0.0, 0.0, 1.0)
-    glutWireSphere(0.35, 30, 30)
+    glutSolidSphere(0.35, 30, 30)
 
 
 def sphereMond():
     glColor3f(6, 6, 6)
-    glutWireSphere(0.1, 30, 30)
+    glutSolidSphere(0.1, 30, 30)
 
 
 def sphereVenus():
     glColor3f(0.5, 0.5, 0.2)
-    glutWireSphere(0.33, 30, 30)
+    glutSolidSphere(0.33, 30, 30)
 
 
 def sphereMars():
     glColor3f(1.0, 0.0, 0.0)
-    glutWireSphere(0.25, 30, 30)
+    glutSolidSphere(0.25, 30, 30)
 
 
 def setupLighting():
@@ -65,6 +65,41 @@ def setupLighting():
     glEnable(GL_NORMALIZE)
     glShadeModel(GL_SMOOTH)
 
+def getImage(pic):
+
+    dateipfad = "images/" + pic + ".jpg"
+    print(dateipfad)
+
+    try:
+        image = Image.open(dateipfad)
+
+        x, y = image.size
+
+        image = image.convert("RGBA").tobytes("raw", "RGBA")
+        textur = glGenTextures(1)
+        glBindTexture(GL_TEXTURE_2D, textur)
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST)
+        gluBuild2DMipmaps(GL_TEXTURE_2D, 3, x, y, GL_RGBA, GL_UNSIGNED_BYTE, image)
+
+        return textur
+    except:
+        raise FileNotFoundError("Textur konnte nicht geladen werden")
+
+
+def setupTexture(imgID):
+    glEnable(GL_TEXTURE_2D)
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST)
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST)
+    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL)
+
+    glBindTexture(GL_TEXTURE_2D, imgID)
+
+
+def menue(option=1):
+    if option == 1:
+        print("L - Licht")
+
 
 def main():
     dayOfYear = 0.0
@@ -77,8 +112,12 @@ def main():
     # Frame
     pygame.init()
     display = (800, 600)
-    pygame.display.set_mode(display, DOUBLEBUF | OPENGL)
+    screen = pygame.display.set_mode(display, DOUBLEBUF | OPENGL)
     pygame.display.set_caption('Sunsystem - Lehner, Zainzinger')
+
+    # menueEins = glutCreateMenu(menue)
+    # glutAddMenuEntry('Help', 1)
+    # glutAttachMenu(GLUT_LEFT_BUTTON)
 
     glShadeModel(GL_SMOOTH)
     glClearColor(0.0, 0.0, 0.0, 0.0)
@@ -89,7 +128,7 @@ def main():
 
     gluPerspective(60, (display[0] / display[1]), 0.5, 100.0)
 
-    glTranslatef(0.0, -0.5, -8.0)
+    glTranslatef(0.0, -0.5, -6.0)
 
     glRotatef(1, 1, 1, 1)
 
@@ -101,6 +140,7 @@ def main():
     paused = False
     texture = False
     light = False
+    active = True
 
     # Game-Loop
     while True:
@@ -120,7 +160,7 @@ def main():
                 if animateIncrement < 150:
                     animateIncrement = animateIncrement + 10
             elif k[K_MINUS]:
-                if animateIncrement > 40:
+                if animateIncrement > 10:
                     animateIncrement = animateIncrement - 10
             elif k[K_t]:
                 if texture:
@@ -132,9 +172,11 @@ def main():
                 if light:
                     light = False
                     glDisable(GL_LIGHTING)
+                    glDisable(GL_LIGHT0)
                 else:
                     light = True
                     setupLighting()
+
 
         if not paused:
             hourOfDay += animateIncrement
@@ -201,44 +243,8 @@ def main():
     pygame.quit()
     quit()
 
-
-
 main()
 
-def getImage(pic):
-    """
-        ladet eine textur
-        :param pic: pfad des Bilds der als textur geladen werden soll
-        :return:
-        """
-
-    dateipfad = "/images/" + pic + ".jpg"
-
-    try:
-        image = open(dateipfad)
-
-        x = image.size[0]
-        y = image.size[1]
-
-        image = image.convert("RGBA").tobytes("raw", "RGBA")
-        textur = glGenTextures(1)
-        glBindTexture(GL_TEXTURE_2D, textur)
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST)
-        gluBuild2DMipmaps(GL_TEXTURE_2D, 3, x, y, GL_RGBA, GL_UNSIGNED_BYTE, image)
-
-        return textur
-    except:
-        raise FileNotFoundError("Textur konnte nicht geladen werden")
-
-
-def setupTexture(self, imgID):
-    glEnable(GL_TEXTURE_2D)
-    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST)
-    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST)
-    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL)
-
-    glBindTexture(GL_TEXTURE_2D, imgID)
 
 
 
