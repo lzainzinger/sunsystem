@@ -9,6 +9,7 @@ from OpenGL.raw.GLUT import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
 from PIL import Image
+from Button import *
 
 
 # class Sunsystem(object):
@@ -127,7 +128,7 @@ def main():
 
     gluPerspective(60, (display[0] / display[1]), 0.5, 100.0)
 
-    glTranslatef(0.0, -0.5, -6.0)
+    glTranslatef(0.0, -0.5, -5.0)
 
     glRotatef(1, 1, 1, 1)
 
@@ -213,6 +214,16 @@ def main():
         glLoadIdentity()
         glTranslatef(0.0, 0.0, -8.0)
         glRotatef(15.0, 1.0, 0.0, 0.0)
+
+        #Button
+        glPushMatrix()
+        gluLookAt(0, 0.001, 7,
+                  0, 0, 0,
+                  0, 0, 1)
+        b1 = Button((8, -8), (12, -8), (12, -7), (8, -7), 1)
+        b1.draw()
+
+        glPopMatrix()
 
         glPushMatrix()
 
