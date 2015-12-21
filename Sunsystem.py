@@ -84,15 +84,15 @@ def main():
         # Sonne
         glPushMatrix()
         glRotatef(-90, 1.0, .0, .0)
-        sphereSonne()
+        sphereSonne();
         glPopMatrix()
 
         # Erde
         glRotatef(360.0 * dayOfYear / 365.0, 0.0, 1.0, 0.0)
         glTranslatef(4.0, 0.0, 0.0)
+        sphereErde;
         glPushMatrix()
         glRotatef(360.0 * hourOfDay / 24.0, 0.0, 1.0, 0.0)
-        sphereErde()
         glPopMatrix()
 
         glFlush()
