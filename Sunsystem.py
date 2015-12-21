@@ -17,31 +17,48 @@ from Button import *
 
 # Methoden zum Erstellen von Planeten
 def sphereSonne():
+    """ Methode zum Erstellen der Sonne  """
+
     glColor3f(1.0, 1.0, 0.0)
     glutSolidSphere(1.0, 50, 50)
 
 
 def sphereErde():
+    """ Methode zum Erstellen der Erde  """
+
     glColor3f(0.0, 0.0, 1.0)
     glutSolidSphere(0.35, 30, 30)
 
 
 def sphereMond():
+    """ Methode zum Erstellen des Monds  """
+
     glColor3f(6, 6, 6)
     glutSolidSphere(0.1, 30, 30)
 
 
 def sphereVenus():
+    """
+    Methode zum Erstellen der Venus
+    """
+
     glColor3f(0.5, 0.5, 0.2)
     glutSolidSphere(0.33, 30, 30)
 
 
 def sphereMars():
+    """
+    Methode zum Erstellen des Mars
+    """
+
     glColor3f(1.0, 0.0, 0.0)
     glutSolidSphere(0.25, 30, 30)
 
 
 def setupLighting():
+    """
+    Methode zum erstellen der Beleuchtung
+    """
     zeros = (0.15, 0.15, 0.15, 0.3)
     ones = (1.0, 1.0, 1.0, 0.3)
     half = (0.5, 0.5, 0.5, 0.5)
@@ -67,6 +84,11 @@ def setupLighting():
 
 
 def getImage(pic):
+    """
+    Methode zum Laden der Textur
+    :param pic: Name des Bildes (jpg) im Ordner images
+    :return: textur
+    """
 
     dateipfad = "images/" + pic + ".jpg"
 
@@ -88,6 +110,10 @@ def getImage(pic):
 
 
 def setupTexture(imgID):
+    """
+    Methode zum Texturieren
+    :param imgID: Referenz der Textur (von der Methode getImage)
+    """
     glEnable(GL_TEXTURE_2D)
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST)
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST)
@@ -96,12 +122,10 @@ def setupTexture(imgID):
     glBindTexture(GL_TEXTURE_2D, imgID)
 
 
-def menue(option=1):
-    if option == 1:
-        print("L - Licht")
-
-
 def main():
+    """
+    Main-Methode des Solarsystems, zum erstellen des Solarsystems
+    """
     dayOfYear = 0.0
     hourOfDay = 0.0
     venusDayOfYear = 0.0
