@@ -140,6 +140,7 @@ def main():
     textureVenus = getImage('venus')
     textureErde = getImage('erde')
     textureMond = getImage('mond')
+    textureHelp = getImage('help')
 
     paused = False
     texture = False
@@ -199,6 +200,11 @@ def main():
                     looky = 8
                     lookz = 0
 
+            if event.type == pygame.MOUSEBUTTONUP:
+                mouse = pygame.mouse.get_pos()
+                if mouse[0] >= 37 and mouse[0] <= 155 and mouse[1] >= 33 and mouse[1] <= 60:
+                    print("Key-Commands: \n  \n + ... Schneller \n - ... Langsamer \n l ... Licht \n t ... Texture \n c ... Ansicht ändern \n ESC ... Schließen")
+
         if not paused:
             hourOfDay += animateIncrement
             inc = animateIncrement / 24.0
@@ -217,13 +223,16 @@ def main():
 
         #Button
         glPushMatrix()
+
         gluLookAt(0, 0.001, 7,
                   0, 0, 0,
                   0, 0, 1)
-        b1 = Button((8, -8), (12, -8), (12, -7), (8, -7), 1)
+        b1 = Button((8, -8), (12, -8), (12, -7), (8, -7))
         b1.draw()
 
         glPopMatrix()
+
+        # Planeten
 
         glPushMatrix()
 
