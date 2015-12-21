@@ -149,6 +149,9 @@ def main():
     looky = 0.1
     lookz = 7
 
+    # Beschreibung
+    print("Key-Commands: \n  \n + ... Schneller \n - ... Langsamer \n l ... Licht \n t ... Texture \n c ... Ansicht ändern \n ESC ... Schließen")
+
     # Game-Loop
     while True:
 
@@ -200,10 +203,10 @@ def main():
                     looky = 8
                     lookz = 0
 
-            if event.type == pygame.MOUSEBUTTONUP:
-                mouse = pygame.mouse.get_pos()
-                if mouse[0] >= 37 and mouse[0] <= 155 and mouse[1] >= 33 and mouse[1] <= 60:
-                    print("Key-Commands: \n  \n + ... Schneller \n - ... Langsamer \n l ... Licht \n t ... Texture \n c ... Ansicht ändern \n ESC ... Schließen")
+            # if event.type == pygame.MOUSEBUTTONUP:
+                # mouse = pygame.mouse.get_pos()
+                # if mouse[0] >= 37 and mouse[0] <= 155 and mouse[1] >= 33 and mouse[1] <= 60:
+                    # print("Key-Commands: \n  \n + ... Schneller \n - ... Langsamer \n l ... Licht \n t ... Texture \n c ... Ansicht ändern \n ESC ... Schließen")
 
         if not paused:
             hourOfDay += animateIncrement
@@ -222,15 +225,15 @@ def main():
         glRotatef(15.0, 1.0, 0.0, 0.0)
 
         #Button
-        glPushMatrix()
+        # glPushMatrix()
 
-        gluLookAt(0, 0.001, 7,
-                  0, 0, 0,
-                  0, 0, 1)
-        b1 = Button((8, -8), (12, -8), (12, -7), (8, -7))
-        b1.draw()
+        # gluLookAt(0, 0.001, 7,
+                #  0, 0, 0,
+                #  0, 0, 1)
+        # b1 = Button((8, -8), (12, -8), (12, -7), (8, -7))
+        # b1.draw()
 
-        glPopMatrix()
+        # glPopMatrix()
 
         # Planeten
 
