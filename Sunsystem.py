@@ -14,7 +14,7 @@ from PIL import Image
 # class Sunsystem(object):
 # """  Klasse Sunsystem zur Darstellung eines Sonnensystemes """
 
-# Methode zum Erstellen von Planeten
+# Methoden zum Erstellen von Planeten
 def sphereSonne():
     glColor3f(1.0, 1.0, 0.0)
     glutSolidSphere(1.0, 50, 50)
@@ -41,7 +41,6 @@ def sphereMars():
 
 
 def setupLighting():
-
     zeros = (0.15, 0.15, 0.15, 0.3)
     ones = (1.0, 1.0, 1.0, 0.3)
     half = (0.5, 0.5, 0.5, 0.5)
@@ -65,10 +64,10 @@ def setupLighting():
     glEnable(GL_NORMALIZE)
     glShadeModel(GL_SMOOTH)
 
+
 def getImage(pic):
 
     dateipfad = "images/" + pic + ".jpg"
-    print(dateipfad)
 
     try:
         image = Image.open(dateipfad)
@@ -190,7 +189,6 @@ def main():
                 pygame.quit()
                 quit()
 
-
         if not paused:
             hourOfDay += animateIncrement
             inc = animateIncrement / 24.0
@@ -268,10 +266,5 @@ def main():
     pygame.quit()
     quit()
 
+
 main()
-
-
-
-
-
-
