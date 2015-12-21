@@ -144,6 +144,8 @@ def main():
     texture = False
     light = False
     active = True
+    looky = 0.1
+    lookz = 7
 
     # Game-Loop
     while True:
@@ -188,6 +190,13 @@ def main():
             elif k[K_ESCAPE]:
                 pygame.quit()
                 quit()
+            elif k[K_c]:
+                if looky == 8:
+                    looky = 0.1
+                    lookz = 7
+                else:
+                    looky = 8
+                    lookz = 0
 
         if not paused:
             hourOfDay += animateIncrement
@@ -204,6 +213,12 @@ def main():
         glLoadIdentity()
         glTranslatef(0.0, 0.0, -8.0)
         glRotatef(15.0, 1.0, 0.0, 0.0)
+
+        glPushMatrix()
+
+        gluLookAt(0, looky, lookz,
+                  0, 0, 0,
+                  0, 0, 1)
 
         if texture:
             setupTexture(textureSun)
@@ -257,7 +272,7 @@ def main():
         glRotatef(360 * dayOfYear / 24.0, 0.0, 1.0, 0.0)
         sphereMars()
         glPopMatrix()
-
+        glPopMatrix()
         # Frame Update
         glFlush()
         pygame.time.wait(40)
